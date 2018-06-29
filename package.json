@@ -1,5 +1,5 @@
 {
-  "name": "build-helper",
+  "name": "git-flow-buddy",
   "version": "1.1.0",
   "description": "git and relase management",
   "main": "index.js",
@@ -7,18 +7,18 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "build-helper": "./bin/build-helper.js"
+    "gfb": "./bin/gfb.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lotterfriends/build-helper.git"
+    "url": "git+https://github.com/lotterfriends/git-flow-buddy.git"
   },
   "author": "André Tarnowsky",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lotterfriends/build-helper/issues"
+    "url": "https://github.com/lotterfriends/git-flow-buddy/issues"
   },
-  "homepage": "https://github.com/lotterfriends/build-helper#readme",
+  "homepage": "https://github.com/lotterfriends/git-flow-buddy#readme",
   "dependencies": {
     "chalk": "^1.1.3",
     "changelog42": "lotterfriends/changelog42",

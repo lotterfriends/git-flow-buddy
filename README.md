@@ -1,12 +1,12 @@
-# build-helper
-This tool helps building git releases with a changelog and [semver](http://semver.org/) versioning. The tool works with [composer](https://getcomposer.org/) and [node](https://www.npmjs.org) projects. The build-helper use `version` property in the `package.json` or `composer.json`. You can flag the release with a status e.g. `stable`, `unstable` or `beta` with a status field in the package file.
+# git-flow-buddy
+This tool helps building git releases with a changelog and [semver](http://semver.org/) versioning. The tool works with [composer](https://getcomposer.org/) and [node](https://www.npmjs.org) projects. The git-flow-buddy use `version` property in the `package.json` or `composer.json`. You can flag the release with a status e.g. `stable`, `unstable` or `beta` with a status field in the package file.
 
 ## Requiements
 git, git-flow, node, npm
 
 ## Install
 ```bash
-$ npm install --global lotterfriends/build-helper
+$ npm install --global lotterfriends/git-flow-buddy
 ```
 
 ## Usage
@@ -22,13 +22,13 @@ $ npm install --global lotterfriends/build-helper
 ```bash
 $ cd AwesomProject
 $ git flow init          # init git flow (if not yet done) 
-$ build-helper patch     # create a new (local) patch release - eg 0.0.4 -> 0.0.5
-$ build-helper -p minor  # create a new minor release and push the release branch and tag to the server - eg 0.2.4 -> 0.3.0
-$ build-helper --help    # show the help
+$ gfb patch     # create a new (local) patch release - eg 0.0.4 -> 0.0.5
+$ gfb -p minor  # create a new minor release and push the release branch and tag to the server - eg 0.2.4 -> 0.3.0
+$ gfb --help    # show the help
 ```
 
-## Usage `build-helper-config.json` config files
-With the `build-helper-config.json` config files you can configure your build and set some properties to default.
+## Usage `git-flow-buddy-config.json` config files
+With the `git-flow-buddy-config.json` config files you can configure your build and set some properties to default.
 
 ### Properties
 
@@ -39,8 +39,8 @@ With the `build-helper-config.json` config files you can configure your build an
 - `buildTimestampInName` - include build Timestamp in release name  (default: `false`).
 - `createChangelog` - create a changelog  (default: `true`).
 - `changelogFolder` - folder where the changelog saved  (default: `./changelogs`).
-- `commitURL` - repository commit url (default `false`) e.g. `"commitURL": "https://github.com/lotterfriends/build-helper/commit"`
-- `releaseURL` - repository commit url (default `false`) e.g. `"releaseURL": "https://github.com/lotterfriends/build-helper/releases/tag"`
+- `commitURL` - repository commit url (default `false`) e.g. `"commitURL": "https://github.com/lotterfriends/git-flow-buddy/commit"`
+- `releaseURL` - repository commit url (default `false`) e.g. `"releaseURL": "https://github.com/lotterfriends/git-flow-buddy/releases/tag"`
 - `packageSpaces` - spaces in the package.json or composer.json file (default `2`),,
 - `preConditionCommands` - commands (as an array) that are executed before the first release action. If en error occure in one of these commands, the release doesn't start e.g. ``"preConditionCommands": ["grunt lintjs", "grunt lintcss"]` (default: [])
 - `neverendingChangelog` - use just one changelog file and prepend the new releases (default: `false`).
