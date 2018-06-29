@@ -13,7 +13,7 @@ var git = require('../lib/git');
 var _ = require('../lib/utils');
 
 // config
-var buildConfigPath = path.join(process.cwd(), 'build-helper-config.json');
+var configFilePath = path.join(process.cwd(), 'gfb-config.json');
 
 // vars
 var parameterVersion = false;
@@ -43,7 +43,7 @@ var getProject = function() {
 };
 
 var initOptions = function() {
-  var config = _.isFileReadable(buildConfigPath) ? require(buildConfigPath) : {};
+  var config = _.isFileReadable(configFilePath) ? require(configFilePath) : {};
   _.extend(options, {
     push: _.resolveParam(config.push, false),
     keep: _.resolveParam(config.keep, false),
@@ -64,15 +64,15 @@ var initOptions = function() {
 
 var showHelp = function() {
   console.log();
-  console.log('build-helper');
+  console.log('git-flow-buddy (gfb)');
   console.log();
   console.log('create a new release, update the version and build number and do the git stuff');
-  console.log('build-helper 0.0.5');
-  console.log('build-helper major|minor|patch');
-  console.log('build-helper -p minor');
-  console.log('build-helper --debug -p patch')
+  console.log('gfb 0.0.5');
+  console.log('gfb major|minor|patch');
+  console.log('gfb -p minor');
+  console.log('gfb --debug -p patch')
   console.log();
-  console.log('Usage: build-helper');
+  console.log('Usage: gfb');
   console.log();
   console.log('  options');
   console.log('   -h/--help     show this help');
