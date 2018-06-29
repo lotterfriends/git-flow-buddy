@@ -27,8 +27,8 @@ $ gfb -p minor  # create a new minor release and push the release branch and tag
 $ gfb --help    # show the help
 ```
 
-## Usage `git-flow-buddy-config.json` config files
-With the `git-flow-buddy-config.json` config files you can configure your build and set some properties to default.
+## Usage `gfb-config.json` config files
+With the `gfb-config.json` config files you can configure your build and set some properties to default.
 
 ### Properties
 
