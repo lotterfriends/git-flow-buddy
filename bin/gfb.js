@@ -118,6 +118,7 @@ var handleParameters = function() {
           break;
         case '--reset':
           reset = true;
+          options.update = true;
           break;
       }
     });
