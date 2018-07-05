@@ -173,7 +173,8 @@ var doCleanup = function() {
 };
 
 var doReset = function() {
-  git.deleteTag()
+  var tag = git.getLastTagSync();
+  git.deleteTag(tag, true)
     .then(git.resetBranchWithOrigin.bind(this, 'develop'))
     .then(git.resetBranchWithOrigin.bind(this, 'master'))
     .then(git.checkoutDevelop.bind(this))
