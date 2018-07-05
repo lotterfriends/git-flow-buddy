@@ -196,7 +196,7 @@ getProject();
 initOptions();
 handleParameters();
 
-if (!reset) {
+if (!reset && !changes) {
   getVersion();
 }
 
