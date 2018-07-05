@@ -118,7 +118,6 @@ var handleParameters = function() {
           break;
         case '--reset':
           reset = true;
-          options.update = true;
           break;
       }
     });
@@ -187,7 +186,10 @@ var doReset = function() {
 getProject();
 initOptions();
 handleParameters();
-getVersion();
+
+if (!reset) {
+  getVersion();
+}
 
 if (reset) {
   doReset();
