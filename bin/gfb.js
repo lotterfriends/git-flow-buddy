@@ -173,8 +173,8 @@ var doCleanup = function() {
 };
 
 var doReset = function() {
-  var tag = git.getLastTagSync();
-  git.deleteTag(tag, true)
+  var prefix = git.getVersionPrefixSync();
+  git.deleteTag(prefix + project.version, true)
     .then(git.resetBranchWithOrigin.bind(this, 'develop'))
     .then(git.resetBranchWithOrigin.bind(this, 'master'))
     .then(git.checkoutDevelop.bind(this))
