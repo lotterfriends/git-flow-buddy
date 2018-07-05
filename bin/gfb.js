@@ -21,6 +21,7 @@ var paramaters = [];
 var project = {};
 var options = {};
 var cleanup = false;
+var reset = false;
 
 var getProject = function() {
   options.packageDefinitionPath = _.getPackage(process.cwd());
@@ -79,8 +80,9 @@ var showHelp = function() {
   console.log('   -p/--push     push new release to origin');
   console.log('   -k/--keep     keep branch after performing finish');
   console.log('   -d/--debug    more output');
-  console.log('   -u/--update   (BETA) experimental');
-  console.log('   --cleanup     reset repo')
+  console.log('   -u/--update   update the last release (experimental)');
+  console.log('   --cleanup     remove an unfinished release')
+  console.log('   --reset       reset repo with origin')
   console.log();
 };
 
@@ -113,6 +115,9 @@ var handleParameters = function() {
         case '--cleanup':
           cleanup = true;
           options.update = true;
+          break;
+        case '--reset':
+          reset = true;
           break;
       }
     });
@@ -167,12 +172,25 @@ var doCleanup = function() {
   helper.rollback();
 };
 
+var doReset = function() {
+  git.deleteTag()
+    .then(git.resetBranchWithOrigin('develop'))
+    .then(git.resetBranchWithOrigin('master'))
+    .then(function() {
+      console.log('reset finished');
+  }, function(error) {
+    console.log(chalk.red(error));
+  });
+}
+
 getProject();
 initOptions();
 handleParameters();
 getVersion();
 
-if (cleanup) {
+if (reset) {
+  doReset();
+} else if (cleanup) {
   doCleanup();
 } else {
   doRelease();
