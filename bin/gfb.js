@@ -11,6 +11,7 @@ var semver = require('semver');
 var Helper = require('../lib');
 var git = require('../lib/git');
 var _ = require('../lib/utils');
+var changelog = require('../lib/changelog');
 
 // config
 var configFilePath = path.join(process.cwd(), 'gfb-config.json');
@@ -22,6 +23,7 @@ var project = {};
 var options = {};
 var cleanup = false;
 var reset = false;
+var showChanges = false;
 
 var getProject = function() {
   options.packageDefinitionPath = _.getPackage(process.cwd());
@@ -83,6 +85,7 @@ var showHelp = function() {
   console.log('   -u/--update   update the last release (experimental)');
   console.log('   --cleanup     remove an unfinished release')
   console.log('   --reset       reset repo with origin')
+  console.log('   --changes     show changes since last version')
   console.log();
 };
 
@@ -118,6 +121,9 @@ var handleParameters = function() {
           break;
         case '--reset':
           reset = true;
+          break;
+        case '--changes':
+          showChanges = true;
           break;
       }
     });
@@ -194,7 +200,11 @@ if (!reset) {
   getVersion();
 }
 
-if (reset) {
+if (changes) {
+  changelog.createReleaseMessage().then(function(message) {
+    console.log(message);
+  });
+} else if (reset) {
   doReset();
 } else if (cleanup) {
   doCleanup();

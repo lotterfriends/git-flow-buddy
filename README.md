@@ -19,6 +19,7 @@ $ npm install --global lotterfriends/git-flow-buddy
 * `-u/--update`: update the last release (experimental)
 * `--cleanup`: remove an unfinished release
 * `--reset`: reset repo with origin
+* `--changes`: show changes since last version
 
 ### Examples
 ```bash
