@@ -174,8 +174,9 @@ var doCleanup = function() {
 
 var doReset = function() {
   git.deleteTag()
-    .then(git.resetBranchWithOrigin('develop'))
-    .then(git.resetBranchWithOrigin('master'))
+    .then(git.resetBranchWithOrigin.bind(this, 'develop'))
+    .then(git.resetBranchWithOrigin.bind(this, 'master'))
+    .then(git.checkoutDevelop.bind(this))
     .then(function() {
       console.log('reset finished');
   }, function(error) {
