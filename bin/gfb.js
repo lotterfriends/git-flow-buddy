@@ -196,11 +196,11 @@ getProject();
 initOptions();
 handleParameters();
 
-if (!reset && !changes) {
+if (!reset && !showChanges) {
   getVersion();
 }
 
-if (changes) {
+if (showChanges) {
   changelog.createReleaseMessage().then(function(message) {
     console.log(message);
   });
