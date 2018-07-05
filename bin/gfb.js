@@ -178,6 +178,7 @@ var doReset = function() {
     .then(git.resetBranchWithOrigin.bind(this, 'develop'))
     .then(git.resetBranchWithOrigin.bind(this, 'master'))
     .then(git.checkoutDevelop.bind(this))
+    .then(git.fetchTags.bind(this))
     .then(function() {
       console.log('reset finished');
   }, function(error) {
