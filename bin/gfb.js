@@ -13,9 +13,6 @@ var git = require('../lib/git');
 var _ = require('../lib/utils');
 var changelog = require('../lib/changelog');
 
-// config
-var configFilePath = path.join(process.cwd(), 'gfb-config.json');
-
 // vars
 var parameterVersion = false;
 var paramaters = [];
@@ -46,6 +43,7 @@ var getProject = function() {
 };
 
 var initOptions = function() {
+  var configFilePath = path.join(process.cwd(), 'gfb-config.json');
   var config = _.isFileReadable(configFilePath) ? require(configFilePath) : {};
   _.extend(options, {
     push: _.resolveParam(config.push, false),
