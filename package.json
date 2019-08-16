@@ -1,6 +1,6 @@
 {
   "name": "git-flow-buddy",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "git and relase management",
   "main": "index.js",
   "scripts": {
@@ -26,5 +26,5 @@
     "shelljs": "^0.7.4",
     "when": "^3.7.7"
   },
-  "buildTimestamp": 1551800309638
+  "buildTimestamp": 1565955625112
 }
