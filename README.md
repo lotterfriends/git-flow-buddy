@@ -49,7 +49,7 @@ With the `gfb-config.json` config files you can configure your build and set som
 - `neverendingChangelog` - use just one changelog file and prepend the new releases (default: `false`).
 - `neverendingChangelogFilename` - the filename of the neverending changelog  (default: `CHANGELOG.md`).
 - `customReleaseCommands` - commands (as an array) that are executed after the branch creation and the update of ther version file (package.json, composer.json) and before the release branch commit, if you want to automatically update files or sth. with the commit, this is your place to be  (default: [])
-- `customReleaseCommands` - commands (as an array) that are executed after the release. You can use this for example to trigger a notfication hook or to publish a npm package
+- `postReleaseCommands` - commands (as an array) that are executed after the release. You can use this for example to trigger a notfication hook or to publish a npm package
 
 ### Other
 - If you prefix commits with somethin: commit message, something is printed bold in the changelog
