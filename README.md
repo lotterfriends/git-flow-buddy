@@ -12,14 +12,15 @@ $ npm install --global lotterfriends/git-flow-buddy
 ## Usage
 
 ### Parameters
-* `-h/--help`: show the help
-* `-p/--push`: push new release to origin
-* `-k/--keep`: keep branch after performing finish
-* `-d/--debug`: debug output
+* `-h/--help`  : show the help
+* `-p/--push`  : push new release to origin
+* `-k/--keep`  : keep branch after performing finish
+* `-d/--debug` : debug output
 * `-u/--update`: update the last release (experimental)
-* `--cleanup`: remove an unfinished release
-* `--reset`: reset repo with origin
-* `--changes`: show changes since last version
+* `-b/--bump`  : just bump the version, nothing else
+* `--cleanup`  : remove an unfinished release
+* `--reset`    : reset repo with origin
+* `--changes`  : show changes since last version
 
 ### Examples
 ```bash

@@ -21,6 +21,7 @@ var options = {};
 var cleanup = false;
 var reset = false;
 var showChanges = false;
+var bump = false;
 
 var getProject = function() {
   options.packageDefinitionPath = _.getPackage(process.cwd());
@@ -82,6 +83,7 @@ var showHelp = function() {
   console.log('   -k/--keep     keep branch after performing finish');
   console.log('   -d/--debug    more output');
   console.log('   -u/--update   update the last release (experimental)');
+  console.log('   -b/--bump     just bump the version, nothing else');
   console.log('   --cleanup     remove an unfinished release')
   console.log('   --reset       reset repo with origin')
   console.log('   --changes     show changes since last version')
@@ -123,6 +125,10 @@ var handleParameters = function() {
           break;
         case '--changes':
           showChanges = true;
+          break;
+        case '-b':
+        case '--bump':
+          bump = true;
           break;
       }
     });
@@ -203,6 +209,14 @@ if (showChanges) {
   changelog.createReleaseMessage().then(function(message) {
     console.log(message);
   });
+} else if (bump) {
+  var helper = new Helper(_.extend({}, options, {
+    currentVersion: project.version,
+    packageStatus: project.status,
+    packageName: project.name
+  }));
+  helper.bump(parameterVersion);
+  helper.updatePackage(false);
 } else if (reset) {
   doReset();
 } else if (cleanup) {
