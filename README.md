@@ -24,11 +24,11 @@ $ npm install --global lotterfriends/git-flow-buddy
 
 ### Examples
 ```bash
-$ cd AwesomProject
-$ git flow init          # init git flow (if not yet done) 
-$ gfb patch     # create a new (local) patch release - eg 0.0.4 -> 0.0.5
-$ gfb -p minor  # create a new minor release and push the release branch and tag to the server - eg 0.2.4 -> 0.3.0
-$ gfb --help    # show the help
+$ cd AwesomeProject
+$ git flow init     # init git flow (if not yet done) 
+$ gfb patch         # create a new (local) patch release - eg 0.0.4 -> 0.0.5
+$ gfb -p minor      # create a new minor release and push the release branch and tag to the server - eg 0.2.4 -> 0.3.0
+$ gfb --help        # show the help
 ```
 
 ## Usage `gfb-config.json` config files
