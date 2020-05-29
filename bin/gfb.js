@@ -217,6 +217,7 @@ if (showChanges) {
   }));
   helper.bump(parameterVersion);
   helper.updatePackage(false);
+  helper.updatePackageLock();
 } else if (reset) {
   doReset();
 } else if (cleanup) {
