@@ -6,7 +6,7 @@ git, git-flow, node, npm
 
 ## Install
 ```bash
-$ npm install --global lotterfriends/git-flow-buddy
+$ npm install --global git-flow-buddy
 ```
 
 ## Usage
