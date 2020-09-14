@@ -61,7 +61,8 @@ var initOptions = function() {
     neverendingChangelog: _.resolveParam(config.neverendingChangelog, false),
     neverendingChangelogFilename: _.resolveParam(config.neverendingChangelogFilename, 'CHANGELOG.md'),
     customReleaseCommands: _.resolveParam(config.customReleaseCommands, []),
-    postReleaseCommands: _.resolveParam(config.postReleaseCommands, [])
+    postReleaseCommands: _.resolveParam(config.postReleaseCommands, []),
+    changelogUsername: _.resolveParam(config.changelogUsername, 'auto'),
   });
 };
 
@@ -206,6 +207,9 @@ if (!reset && !showChanges) {
 }
 
 if (showChanges) {
+  changelog.getUser({changelogUsername: 'auto'}).then(user => {
+    console.log(`Username: ${user}`)
+  });
   changelog.createReleaseMessage().then(function(message) {
     console.log(message);
   });
