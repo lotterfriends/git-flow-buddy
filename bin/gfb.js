@@ -207,6 +207,9 @@ if (!reset && !showChanges) {
 }
 
 if (showChanges) {
+  changelog.getUser({changelogUsername: 'auto'}).then(user => {
+    console.log(`Username: ${user}`)
+  });
   changelog.createReleaseMessage().then(function(message) {
     console.log(message);
   });
