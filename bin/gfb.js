@@ -22,6 +22,7 @@ var cleanup = false;
 var reset = false;
 var showChanges = false;
 var bump = false;
+var finish = false;
 
 var getProject = function() {
   options.packageDefinitionPath = _.getPackage(process.cwd());
@@ -62,7 +63,11 @@ var initOptions = function() {
     neverendingChangelogFilename: _.resolveParam(config.neverendingChangelogFilename, 'CHANGELOG.md'),
     customReleaseCommands: _.resolveParam(config.customReleaseCommands, []),
     postReleaseCommands: _.resolveParam(config.postReleaseCommands, []),
+    postReleaseFinishedCommands: _.resolveParam(config.postReleaseFinishedCommands, []),
+    customReleaseFinishCommands: _.resolveParam(config.customReleaseFinishCommands, []),
     changelogUsername: _.resolveParam(config.changelogUsername, 'auto'),
+    finishRelease: _.resolveParam(config.finishRelease, true),
+    releaseMessagePrefix: _.resolveParam(config.releaseMessagePrefix, 'new Release'),
   });
 };
 
@@ -75,6 +80,7 @@ var showHelp = function() {
   console.log('gfb major|minor|patch');
   console.log('gfb -p minor');
   console.log('gfb --debug -p patch')
+  console.log('gfb -f 0.6.1')
   console.log();
   console.log('Usage: gfb');
   console.log();
@@ -85,6 +91,7 @@ var showHelp = function() {
   console.log('   -d/--debug    more output');
   console.log('   -u/--update   update the last release (experimental)');
   console.log('   -b/--bump     just bump the version, nothing else');
+  console.log('   -f/--finish   finish a previously created release branch (useful if finishRelease is set to false)');
   console.log('   --cleanup     remove an unfinished release')
   console.log('   --reset       reset repo with origin')
   console.log('   --changes     show changes since last version')
@@ -131,6 +138,10 @@ var handleParameters = function() {
         case '--bump':
           bump = true;
           break;
+        case '-f':
+        case '--finish':
+          finish = true;
+          break;
       }
     });
   } else {
@@ -171,7 +182,7 @@ var doRelease = function() {
     packageName: project.name
   }));
   helper.bump(parameterVersion);
-  helper.createBranchName();
+  helper.setBranchName();
   helper.release();
 };
 
@@ -196,6 +207,17 @@ var doReset = function() {
   }, function(error) {
     console.log(chalk.red(error));
   });
+}
+
+var doFinish = function() {
+  var helper = new Helper(_.extend({}, options, {
+    currentVersion: project.version,
+    packageStatus: project.status,
+    packageName: project.name
+  }));
+  helper.newVersion = parameterVersion;
+  helper.setBranchName();
+  helper.finish();
 }
 
 getProject();
@@ -224,6 +246,8 @@ if (showChanges) {
   if (_.hasPackageLock()) {
     helper.updatePackageLock();
   }
+} else if(finish) {
+  doFinish();
 } else if (reset) {
   doReset();
 } else if (cleanup) {

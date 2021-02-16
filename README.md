@@ -12,15 +12,16 @@ $ npm install --global git-flow-buddy
 ## Usage
 
 ### Parameters
-* `-h/--help`  : show the help
-* `-p/--push`  : push new release to origin
-* `-k/--keep`  : keep branch after performing finish
-* `-d/--debug` : debug output
-* `-u/--update`: update the last release (experimental)
-* `-b/--bump`  : just bump the version, nothing else
-* `--cleanup`  : remove an unfinished release
-* `--reset`    : reset repo with origin
-* `--changes`  : show changes since last version
+* `-h/--help`   : show the help
+* `-p/--push`   : push new release to origin
+* `-k/--keep`   : keep branch after performing finish
+* `-d/--debug`  : debug output
+* `-u/--update` : update the last release (experimental)
+* `-b/--bump`   : just bump the version, nothing else
+* `-f/--finish` : finish a previously created release branch (useful if `finishRelease` is set to `false`)
+* `--cleanup`   : remove an unfinished release
+* `--reset`     : reset repo with origin
+* `--changes`   : show changes since last version
 
 ### Examples
 ```bash
@@ -29,6 +30,7 @@ $ git flow init     # init git flow (if not yet done)
 $ gfb patch         # create a new (local) patch release - eg 0.0.4 -> 0.0.5
 $ gfb -p minor      # create a new minor release and push the release branch and tag to the server - eg 0.2.4 -> 0.3.0
 $ gfb --help        # show the help
+$ gfb -f 0.6.1      # finish a previously created release
 ```
 
 ## Usage `gfb-config.json` config files
@@ -57,9 +59,21 @@ With the `gfb-config.json` config files you can configure your build and set som
       - `git` : use git username
       - `os` : use system username
       - `auto` : try options till username is not empty, priority -> env, git, os
+- `finishRelease` - execute git release finish (default `true`)
+- `postReleaseFinishedCommands` - executed after gfb execution with --finish/-f flag instead of `postReleaseCommands` (default `[]`)
+- `customReleaseFinishCommands` - executed during gfb execution with --finish/-f flag instead of `customReleaseCommands` (default `[]`)
+- `releaseMessagePrefix` - customize the prefix of the relase message (default `new Release`)
 ### Other
-- If you prefix commits with somethin: commit message, something is printed bold in the changelog
-- Commits prefixed with "working on ..." ignored by the changelog generation
+- If you prefix your commit message with a text and a doubledot, everything before the doubledot is printed bold in the changelog.
+- Commits prefixed with one of the following texts are ignored by the changelog generation (case independent)
+  * working on
+  * wip
+  * [wip]
+  * (wip)
+  * release mgnt
+  * [release mgnt]
+  * (release mgnt)
+
 
 ## License
 
