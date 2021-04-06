@@ -12,16 +12,17 @@ $ npm install --global git-flow-buddy
 ## Usage
 
 ### Parameters
-* `-h/--help`   : show the help
-* `-p/--push`   : push new release to origin
-* `-k/--keep`   : keep branch after performing finish
-* `-d/--debug`  : debug output
-* `-u/--update` : update the last release (experimental)
-* `-b/--bump`   : just bump the version, nothing else
-* `-f/--finish` : finish a previously created release branch (useful if `finishRelease` is set to `false`)
-* `--cleanup`   : remove an unfinished release
-* `--reset`     : reset repo with origin
-* `--changes`   : show changes since last version
+* `-h/--help`             : show the help
+* `-p/--push`             : push new release to origin
+* `-k/--keep`             : keep branch after performing finish
+* `-d/--debug`            : debug output
+* `-u/--update`           : update the last release (experimental)
+* `-b/--bump`             : just bump the version, nothing else
+* `-f/--finish`           : finish a previously created release branch (useful if `finishRelease` is set to `false`)
+* `-r/--disable-roolback` :  disable rollback on release fail
+* `--cleanup`             : remove an unfinished release
+* `--reset`               : reset repo with origin
+* `--changes`             : show changes since last version
 
 ### Examples
 ```bash

@@ -23,6 +23,7 @@ var reset = false;
 var showChanges = false;
 var bump = false;
 var finish = false;
+var disableRollback = false;
 
 var getProject = function() {
   options.packageDefinitionPath = _.getPackage(process.cwd());
@@ -68,6 +69,7 @@ var initOptions = function() {
     changelogUsername: _.resolveParam(config.changelogUsername, 'auto'),
     finishRelease: _.resolveParam(config.finishRelease, true),
     releaseMessagePrefix: _.resolveParam(config.releaseMessagePrefix, 'new Release'),
+    disableRollback: _.resolveParam(config.disableRollback, false),
   });
 };
 
@@ -85,16 +87,17 @@ var showHelp = function() {
   console.log('Usage: gfb');
   console.log();
   console.log('  options');
-  console.log('   -h/--help     show this help');
-  console.log('   -p/--push     push new release to origin');
-  console.log('   -k/--keep     keep branch after performing finish');
-  console.log('   -d/--debug    more output');
-  console.log('   -u/--update   update the last release (experimental)');
-  console.log('   -b/--bump     just bump the version, nothing else');
-  console.log('   -f/--finish   finish a previously created release branch (useful if finishRelease is set to false)');
-  console.log('   --cleanup     remove an unfinished release')
-  console.log('   --reset       reset repo with origin')
-  console.log('   --changes     show changes since last version')
+  console.log('   -h/--help              show this help');
+  console.log('   -p/--push              push new release to origin');
+  console.log('   -k/--keep              keep branch after performing finish');
+  console.log('   -d/--debug             more output');
+  console.log('   -u/--update            update the last release (experimental)');
+  console.log('   -b/--bump              just bump the version, nothing else');
+  console.log('   -f/--finish            finish a previously created release branch (useful if finishRelease is set to false)');
+  console.log('   -r/--disable-roolback  disable rollback on release fail');
+  console.log('   --cleanup              remove an unfinished release');
+  console.log('   --reset                reset repo with origin');
+  console.log('   --changes              show changes since last version');
   console.log();
 };
 
@@ -141,6 +144,10 @@ var handleParameters = function() {
         case '-f':
         case '--finish':
           finish = true;
+          break;
+        case '-r':
+        case '--disable-roolback':
+          disableRollback = true;
           break;
       }
     });
@@ -224,7 +231,7 @@ getProject();
 initOptions();
 handleParameters();
 
-if (!reset && !showChanges) {
+if (!showChanges) {
   getVersion();
 }
 
