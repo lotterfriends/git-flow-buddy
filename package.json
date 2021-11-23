@@ -1,6 +1,6 @@
 {
   "name": "git-flow-buddy",
-  "version": "2.7.5",
+  "version": "2.7.6",
   "description": "git and relase management",
   "main": "index.js",
   "scripts": {
@@ -29,5 +29,5 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
-  "buildTimestamp": 1637253166781
+  "buildTimestamp": 1637677044821
 }
