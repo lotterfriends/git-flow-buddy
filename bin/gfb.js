@@ -231,7 +231,7 @@ getProject();
 initOptions();
 handleParameters();
 
-if (!showChanges) {
+if (!showChanges && !reset &&  !cleanup) {
   getVersion();
 }
 
