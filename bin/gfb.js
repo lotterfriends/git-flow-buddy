@@ -64,7 +64,7 @@ var initOptions = function() {
     neverendingChangelogFilename: _.resolveParam(config.neverendingChangelogFilename, 'CHANGELOG.md'),
     customReleaseCommands: _.resolveParam(config.customReleaseCommands, []),
     postReleaseCommands: _.resolveParam(config.postReleaseCommands, []),
-    postReleaseFinishedCommands: _.resolveParam(config.postReleaseFinishedCommands, []),
+    postReleaseFinishCommands: _.resolveParam(config.postReleaseFinishCommands, []),
     customReleaseFinishCommands: _.resolveParam(config.customReleaseFinishCommands, []),
     changelogUsername: _.resolveParam(config.changelogUsername, 'auto'),
     finishRelease: _.resolveParam(config.finishRelease, true),
@@ -94,7 +94,7 @@ var showHelp = function() {
   console.log('   -u/--update            update the last release (experimental)');
   console.log('   -b/--bump              just bump the version, nothing else');
   console.log('   -f/--finish            finish a previously created release branch (useful if finishRelease is set to false)');
-  console.log('   -r/--disable-roolback  disable rollback on release fail');
+  console.log('   -r/--disable-rollback  disable rollback on release fail');
   console.log('   --cleanup              remove an unfinished release');
   console.log('   --reset                reset repo with origin');
   console.log('   --changes              show changes since last version');
@@ -146,7 +146,7 @@ var handleParameters = function() {
           finish = true;
           break;
         case '-r':
-        case '--disable-roolback':
+        case '--disable-rollback':
           disableRollback = true;
           break;
       }

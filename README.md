@@ -19,7 +19,7 @@ $ npm install --global git-flow-buddy
 * `-u/--update`           : update the last release (experimental)
 * `-b/--bump`             : just bump the version, nothing else
 * `-f/--finish`           : finish a previously created release branch (useful if `finishRelease` is set to `false`)
-* `-r/--disable-roolback` :  disable rollback on release fail
+* `-r/--disable-rollback` :  disable rollback on release fail
 * `--cleanup`             : remove an unfinished release
 * `--reset`               : reset repo with origin
 * `--changes`             : show changes since last version
@@ -61,7 +61,7 @@ With the `gfb-config.json` config files you can configure your build and set som
       - `os` : use system username
       - `auto` : try options till username is not empty, priority -> env, git, os
 - `finishRelease` - execute git release finish (default `true`)
-- `postReleaseFinishedCommands` - executed after gfb execution with --finish/-f flag instead of `postReleaseCommands` (default `[]`)
+- `postReleaseFinishCommands` - executed after gfb execution with --finish/-f flag instead of `postReleaseCommands` (default `[]`)
 - `customReleaseFinishCommands` - executed during gfb execution with --finish/-f flag instead of `customReleaseCommands` (default `[]`)
 - `releaseMessagePrefix` - customize the prefix of the relase message (default `new Release`)
 ### Other
